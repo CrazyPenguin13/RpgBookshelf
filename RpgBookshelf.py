@@ -1,11 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for, abort, session
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'iG8+9(x^2)'
 
 
 @app.route('/')
-def hello_world():
-    return 'Nothing here yet... but someday!'
+def home():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
