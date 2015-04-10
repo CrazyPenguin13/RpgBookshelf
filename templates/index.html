@@ -1,12 +1,38 @@
-{% extends "layout.html" %}
-{% block content %}
-        <h2>Welcome</h2>
-        <p>Find book</p>
-        <form>
+{% extends "bootstrap/base.html" %}
+{% block title %}Main - RPG Bookshelf {% endblock %}
 
-        </form>
-        <h3>Results</h3>
-        <div class="gallery-frame">
+{% block navbar %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">RPG Bookshelf</a>
         </div>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="search">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-bottom:20px;">
+    <div class="jumbotron" style="padding-bottom:0px; margin-bottom:0; z-index:1;" >
+        <img src="{{ url_for("static",filename="dice.png") }} " style="float:left; height:90px; margin-top:30px; margin-left:-30px; margin-right:30px; margin-bottom:0;" />
+        <h2>Welcome to the RPG Bookshelf</h2>
+        <p style="font-size:120%; font-weight: normal;">The RPG Bookshelf is a library management solution to keep track
+            of Role Playing Game Rulebooks. It can track both physical and electronic books (PDF) files. The project is
+            written in Python using Flask &amp; SqlAlchemy. Source code is available on
+            <a href="https://github.com/CrazyPenguin13/RpgBookshelf">Github.com</a>
+        </p>
+        <div style="width:100%; clear:left; height:20px;" ></div>
+    </div>
+    <div class="main-content" style="margin-top:-5px; background-color:#eeeeef; min-height: 500px; z-index:-1; padding:10px;">
+        <h4>Recent Books</h4>
+        <div class="table">
 
+        </div>
+    </div>
+</div>
+{% endblock %}

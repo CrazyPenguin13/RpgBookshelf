@@ -31,7 +31,6 @@ class Library(Base):
 
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
-
     shelves = db.relationship("Shelf", backref="library")
 
     def __repr__(self):
@@ -43,6 +42,7 @@ class Shelf(Base):
 
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
+    library_id = db.Column(db.Integer, db.ForeignKey('Library.id'))
 
     books = db.relationship("Book", backref="shelf")
 
@@ -57,6 +57,7 @@ class Book(Base):
     is_physical = db.Column(db.Boolean, default=False)
     cover = db.Column(db.BLOB)
     rating = db.Column(db.Integer, nullable=False, default="0")
+    shelf_id = db.Column(db.Integer, db.ForeignKey('Shelf.id'))
 
     publishers = db.relationship("Publisher", secondary=BookPublisher, backref='books')
     systems = db.relationship("System", secondary=BookSystem, backref='books')
@@ -73,16 +74,16 @@ class Publisher(Base):
     __tablename__ = "Publisher"
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
-    books = db.relationship("Book", secondary=BookPublisher, backref="publishers")
+    #books = db.relationship("Book", secondary=BookPublisher, backref="publishers")
 
 
 class System(Base):
     __tablename__ = "System"
     name = db.Column(db.String, nullable=False)
-    books = db.relationship("Book", secondary=BookSystem, backref="systems")
+    #books = db.relationship("Book", secondary=BookSystem, backref="systems")
 
 
 class Tag(Base):
     __tablename__ = "Tag"
     name = db.Column(db.String, nullable=False)
-    books = db.relationship("Book", secondary=BookTag, backref="tags")
+    #books = db.relationship("Book", secondary=BookTag, backref="tags")
