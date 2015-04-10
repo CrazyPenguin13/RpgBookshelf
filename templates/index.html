@@ -5,14 +5,19 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">RPG Bookshelf</a>
+            <a class="navbar-brand" href="/">RPG Bookshelf</a>
         </div>
         <form class="navbar-form navbar-right">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="search">
+                <input type="text" class="form-control" placeholder="search" name="WildSearch">
             </div>
             <button type="submit" class="btn btn-default">Search</button>
         </form>
+        <ul class="nav nav-pills navbar-right" style="margin-top:6px;">
+            <li role="presentation"><a href="/about">About</a></li>
+            <li role="presentation"><a href="/contact">Contact</a></li>
+            <li role="presentation"><a href="/search">Advanced Search</a></li>
+        </ul>
     </div>
 </div>
 {% endblock %}
@@ -28,10 +33,24 @@
         </p>
         <div style="width:100%; clear:left; height:20px;" ></div>
     </div>
-    <div class="main-content" style="margin-top:-5px; background-color:#eeeeef; min-height: 500px; z-index:-1; padding:10px;">
+    <div class="main-content" style="margin-top:-5px; background-color:#eeeeef; min-height: 500px; z-index:-1; padding:10px; border-radius: 7px;">
         <h4>Recent Books</h4>
-        <div class="table">
-
+        <div class="row" style="width:100%">
+            {% for book in range(1,13) %}
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div href="#" class="thumbnail" style="min-height:180px; padding:0;">
+                    <img src="{{ url_for('static',filename='images/castle_falkenstein.png') }}" alt="book cover"
+                         style="float:left; height:165px; width:125px; margin:7px; border: 4px white solid; border-radius: 5px">
+                    <p style="margin:0;font-size:120%; background-color:black; color:white;"><em>Sample Book {{ book }}</em></p>
+                    <p style="margin:0;">System: YYYYYYYYYY</p>
+                    <p style="margin:0;">Publisher: ZZZZZZZZZZZ</p>
+                    <p style="margin:0;">Pages: XXX</p>
+                    <p style="margin:0;">Raging: <img src="{{ url_for('static',filename='images/rating{0}.png'.format((book-1)%6)) }}" style="display:inline; " /></p>
+                    <p style="margin:0;">Tags: </p>
+                    <p style="margin:0;">Location: Library\Shelf</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

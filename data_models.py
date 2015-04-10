@@ -55,6 +55,7 @@ class Book(Base):
 
     name = db.Column(db.String, nullable=False)
     is_physical = db.Column(db.Boolean, default=False)
+    pages = db.Column(db.Integer, nullable=False, default=0)
     cover = db.Column(db.BLOB)
     rating = db.Column(db.Integer, nullable=False, default="0")
     shelf_id = db.Column(db.Integer, db.ForeignKey('Shelf.id'))
